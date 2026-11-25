@@ -2,6 +2,7 @@ package com.yassine;
 
 import com.yassine.model.Circuit;
 import com.yassine.model.Client;
+import com.yassine.model.Reservation;
 import com.yassine.service.AgenceService;
 
 import java.util.Scanner;
@@ -90,9 +91,85 @@ public class Main {
                     agence.afficherClients();
                     break;
 
+
                 case 5:
-                    System.out.println("Fonctionnalite : effectuer une reservation");
+                    System.out.println("\n--- EFFECTUER UNE RESERVATION ---");
+
+                    if (agence.getClients().isEmpty() ||
+                            agence.getCircuits().isEmpty()) {
+
+                        System.out.println(
+                                "Il faut ajouter au moins un client et un circuit."
+                        );
+                        break;
+                    }
+
+                    agence.afficherClients();
+
+                    System.out.print("ID du client : ");
+                    int idC = Integer.parseInt(scanner.nextLine());
+
+                    Client clientChoisi = null;
+
+                    for (Client c : agence.getClients()) {
+                        if (c.getId() == idC) {
+                            clientChoisi = c;
+                            break;
+                        }
+                    }
+
+                    if (clientChoisi == null) {
+                        System.out.println("Client introuvable !");
+                        break;
+                    }
+
+                    agence.afficherCircuits();
+
+                    System.out.print("ID du circuit : ");
+                    int idCircuit = Integer.parseInt(scanner.nextLine());
+
+                    Circuit circuitChoisi = null;
+
+                    for (Circuit c : agence.getCircuits()) {
+                        if (c.getId() == idCircuit) {
+                            circuitChoisi = c;
+                            break;
+                        }
+                    }
+
+                    if (circuitChoisi == null) {
+                        System.out.println("Circuit introuvable !");
+                        break;
+                    }
+
+                    System.out.print("Date de reservation : ");
+                    String date = scanner.nextLine();
+
+                    System.out.print("Nombre de personnes : ");
+                    int nombrePersonnes =
+                            Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Saison (haute ou basse) : ");
+                    String saison = scanner.nextLine();
+
+                    int idReservation = agence.getReservations().size() + 1;
+
+                    Reservation reservation = new Reservation(
+                            idReservation,
+                            clientChoisi,
+                            circuitChoisi,
+                            date,
+                            nombrePersonnes,
+                            saison
+                    );
+
+                    agence.ajouterReservation(reservation);
+
+                    System.out.println("Reservation effectuee avec succes !");
+                    reservation.afficherReservation();
+
                     break;
+
 
                 case 6:
                     agence.afficherReservations();
