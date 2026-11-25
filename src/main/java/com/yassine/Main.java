@@ -1,58 +1,69 @@
 package com.yassine;
 
-
-import com.yassine.model.Circuit;
-import com.yassine.model.Client;
-import com.yassine.model.Option;
-import com.yassine.model.Reservation;
 import com.yassine.service.AgenceService;
+
+import java.util.Scanner;
+
 
 public class Main {
 
     public static void main(String[] args) {
 
-        // Créer le service
+        Scanner scanner = new Scanner(System.in);
         AgenceService agence = new AgenceService();
 
-        // Créer les circuits
-        Circuit circuit1 = new Circuit(
-                1, "Decouverte de Djerba",
-                "Djerba", 5, 800
-        );
+        int choix;
 
-        // Créer le client
-        Client client1 = new Client(
-                1, "Ahmed Ben Ali",
-                "ahmed@gmail.com", "22123456"
-        );
+        do {
+            System.out.println("\n===== AGENCE DE VOYAGES =====");
+            System.out.println("1. Ajouter un circuit");
+            System.out.println("2. Afficher les circuits");
+            System.out.println("3. Ajouter un client");
+            System.out.println("4. Afficher les clients");
+            System.out.println("5. Effectuer une reservation");
+            System.out.println("6. Afficher les reservations");
+            System.out.println("7. Quitter");
+            System.out.print("Votre choix : ");
 
-        // Ajouter les données à l'agence
-        agence.ajouterCircuit(circuit1);
-        agence.ajouterClient(client1);
+            choix = Integer.parseInt(scanner.nextLine());
 
-        // Créer les options
-        Option guide = new Option(1, "Guide touristique", 100);
-        Option repas = new Option(2, "Repas", 50);
-        Option excursion = new Option(3, "Excursion", 80);
+            switch (choix) {
 
-        // Créer une réservation
-        Reservation reservation1 = new Reservation(
-                1, client1, circuit1,
-                "25/11/2026", 2, "haute"
-        );
+                case 1:
+                    System.out.println("Fonctionnalite : ajouter un circuit");
+                    break;
 
-        // Ajouter les options
-        reservation1.ajouterOption(guide);
-        reservation1.ajouterOption(repas);
-        reservation1.ajouterOption(excursion);
+                case 2:
+                    agence.afficherCircuits();
+                    break;
 
-        // Enregistrer la réservation
-        agence.ajouterReservation(reservation1);
+                case 3:
+                    System.out.println("Fonctionnalite : ajouter un client");
+                    break;
 
-        // Afficher les informations
-        agence.afficherCircuits();
-        agence.afficherClients();
-        agence.afficherReservations();
+                case 4:
+                    agence.afficherClients();
+                    break;
+
+                case 5:
+                    System.out.println("Fonctionnalite : effectuer une reservation");
+                    break;
+
+                case 6:
+                    agence.afficherReservations();
+                    break;
+
+                case 7:
+                    System.out.println("Merci d'avoir utilise notre application !");
+                    break;
+
+                default:
+                    System.out.println("Choix invalide !");
+            }
+
+        } while (choix != 7);
+
+        scanner.close();
     }
 }
 
