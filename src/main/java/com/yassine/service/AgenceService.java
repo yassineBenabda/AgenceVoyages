@@ -23,8 +23,16 @@ public class AgenceService {
 
     // Ajouter un circuit
     public void ajouterCircuit(Circuit circuit) {
+
+        for (Circuit c : circuits) {
+            if (c.getId() == circuit.getId()) {
+                System.out.println("Erreur : ID circuit deja existant !");
+                return;
+            }
+        }
+
         circuits.add(circuit);
-        System.out.println("Circuit ajouté avec succès !");
+        System.out.println("Circuit ajoute avec succes !");
     }
 
     // Afficher les circuits
@@ -43,10 +51,17 @@ public class AgenceService {
         }
     }
 
-    // Ajouter un client
     public void ajouterClient(Client client) {
+
+        for (Client c : clients) {
+            if (c.getId() == client.getId()) {
+                System.out.println("Erreur : ID client deja existant !");
+                return;
+            }
+        }
+
         clients.add(client);
-        System.out.println("Client ajouté avec succès !");
+        System.out.println("Client ajoute avec succes !");
     }
 
     // Afficher les clients
@@ -67,8 +82,16 @@ public class AgenceService {
 
     // Ajouter une réservation
     public void ajouterReservation(Reservation reservation) {
+
+        for (Reservation r : reservations) {
+            if (r.getId() == reservation.getId()) {
+                System.out.println("Erreur : ID reservation deja existant !");
+                return;
+            }
+        }
+
         reservations.add(reservation);
-        System.out.println("Réservation effectuée avec succès !");
+        System.out.println("Reservation ajoutee avec succes !");
     }
 
     // Afficher les réservations
