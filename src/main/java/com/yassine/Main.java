@@ -1,5 +1,6 @@
 package com.yassine;
 
+import com.yassine.model.Circuit;
 import com.yassine.service.AgenceService;
 
 import java.util.Scanner;
@@ -30,7 +31,30 @@ public class Main {
             switch (choix) {
 
                 case 1:
-                    System.out.println("Fonctionnalite : ajouter un circuit");
+                    System.out.println("\n--- AJOUTER UN CIRCUIT ---");
+
+                    System.out.print("ID du circuit : ");
+                    int id = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Nom du circuit : ");
+                    String nom = scanner.nextLine();
+
+                    System.out.print("Destination : ");
+                    String destination = scanner.nextLine();
+
+                    System.out.print("Duree en jours : ");
+                    int duree = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Prix de base (DT) : ");
+                    double prix = Double.parseDouble(scanner.nextLine());
+
+                    Circuit circuit = new Circuit(
+                            id, nom, destination, duree, prix
+                    );
+
+                    agence.ajouterCircuit(circuit);
+
+                    System.out.println("Circuit ajoute avec succes !");
                     break;
 
                 case 2:
