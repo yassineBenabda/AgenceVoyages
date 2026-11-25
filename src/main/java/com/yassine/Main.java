@@ -2,6 +2,7 @@ package com.yassine;
 
 import com.yassine.model.Circuit;
 import com.yassine.model.Client;
+import com.yassine.model.Option;
 import com.yassine.model.Reservation;
 import com.yassine.service.AgenceService;
 
@@ -163,6 +164,8 @@ public class Main {
                             saison
                     );
 
+                    ajouterOptions(reservation, scanner);
+
                     agence.ajouterReservation(reservation);
 
                     System.out.println("Reservation effectuee avec succes !");
@@ -187,5 +190,54 @@ public class Main {
 
         scanner.close();
     }
+
+
+    private static void ajouterOptions(
+            Reservation reservation,
+            Scanner scanner) {
+
+        Option guide = new Option(1, "Guide touristique", 100);
+        Option repas = new Option(2, "Repas", 50);
+        Option excursion = new Option(3, "Excursion", 80);
+
+        int choixOption;
+
+        do {
+            System.out.println("\n--- OPTIONS DISPONIBLES ---");
+            System.out.println("1. Guide touristique (100 DT)");
+            System.out.println("2. Repas (50 DT)");
+            System.out.println("3. Excursion (80 DT)");
+            System.out.println("0. Terminer les options");
+
+            System.out.print("Votre choix : ");
+            choixOption = Integer.parseInt(scanner.nextLine());
+
+            switch (choixOption) {
+                case 1:
+                    reservation.ajouterOption(guide);
+                    System.out.println("Guide ajoute !");
+                    break;
+
+                case 2:
+                    reservation.ajouterOption(repas);
+                    System.out.println("Repas ajoute !");
+                    break;
+
+                case 3:
+                    reservation.ajouterOption(excursion);
+                    System.out.println("Excursion ajoute !");
+                    break;
+
+                case 0:
+                    System.out.println("Selection des options terminee.");
+                    break;
+
+                default:
+                    System.out.println("Choix invalide !");
+            }
+
+        } while (choixOption != 0);
+    }
+
 }
 
