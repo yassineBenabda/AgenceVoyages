@@ -1,6 +1,7 @@
 package com.yassine;
 
 import com.yassine.model.Circuit;
+import com.yassine.model.Client;
 import com.yassine.service.AgenceService;
 
 import java.util.Scanner;
@@ -62,7 +63,27 @@ public class Main {
                     break;
 
                 case 3:
-                    System.out.println("Fonctionnalite : ajouter un client");
+                    System.out.println("\n--- AJOUTER UN CLIENT ---");
+
+                    System.out.print("ID du client : ");
+                    int idClient = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Nom du client : ");
+                    String nomClient = scanner.nextLine();
+
+                    System.out.print("Email : ");
+                    String email = scanner.nextLine();
+
+                    System.out.print("Telephone : ");
+                    String telephone = scanner.nextLine();
+
+                    Client client = new Client(
+                            idClient, nomClient, email, telephone
+                    );
+
+                    agence.ajouterClient(client);
+
+                    System.out.println("Client ajoute avec succes !");
                     break;
 
                 case 4:
