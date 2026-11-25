@@ -45,11 +45,30 @@ public class Main {
                     System.out.print("Destination : ");
                     String destination = scanner.nextLine();
 
-                    System.out.print("Duree en jours : ");
-                    int duree = Integer.parseInt(scanner.nextLine());
+                    int duree;
+
+                    do {
+                        System.out.print("Duree en jours : ");
+                        duree = Integer.parseInt(scanner.nextLine());
+
+                        if (duree <= 0) {
+                            System.out.println("La duree doit etre superieure a 0 !");
+                        }
+
+                    } while (duree <= 0);
 
                     System.out.print("Prix de base (DT) : ");
-                    double prix = Double.parseDouble(scanner.nextLine());
+                    double prix;
+
+                    do {
+                        System.out.print("Prix de base (DT) : ");
+                        prix = Double.parseDouble(scanner.nextLine());
+
+                        if (prix <= 0) {
+                            System.out.println("Le prix doit etre superieur a 0 !");
+                        }
+
+                    } while (prix <= 0);
 
                     Circuit circuit = new Circuit(
                             id, nom, destination, duree, prix
@@ -147,11 +166,29 @@ public class Main {
                     String date = scanner.nextLine();
 
                     System.out.print("Nombre de personnes : ");
-                    int nombrePersonnes =
-                            Integer.parseInt(scanner.nextLine());
+                    int nombrePersonnes;
 
-                    System.out.print("Saison (haute ou basse) : ");
-                    String saison = scanner.nextLine();
+                    do {
+                        System.out.print("Nombre de personnes : ");
+                        nombrePersonnes = Integer.parseInt(scanner.nextLine());
+
+                        if (nombrePersonnes <= 0) {
+                            System.out.println("Erreur : le nombre doit etre superieur a 0 !");
+                        }
+
+                    } while (nombrePersonnes <= 0);
+
+                    String saison;
+
+                    do {
+                        System.out.print("Saison (haute ou basse) : ");
+                        saison = scanner.nextLine().toLowerCase();
+
+                        if (!saison.equals("haute") && !saison.equals("basse")) {
+                            System.out.println("Erreur : choisissez haute ou basse !");
+                        }
+
+                    } while (!saison.equals("haute") && !saison.equals("basse"));
 
                     int idReservation = agence.getReservations().size() + 1;
 
